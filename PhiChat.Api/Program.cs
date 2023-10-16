@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-//builder.Services.AddSignalR();
+builder.Services.AddSignalR();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -42,6 +42,7 @@ app.UseRouting();
 app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
+app.MapHub<ChatHub>("/ChatHub");
 
 //app.UseEndpoints(endpoints =>
 //{

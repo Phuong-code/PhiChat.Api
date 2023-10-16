@@ -18,7 +18,9 @@ namespace PhiChat.Api.Controllers.Authenticate
         {
             var response = _userFunction.Authenticate(request.LoginId, request.Password);
             if (response == null)
+            {
                 return BadRequest(new { StatusMessage = "Invalid username or password!" });
+            }
 
             return Ok(response);
         }

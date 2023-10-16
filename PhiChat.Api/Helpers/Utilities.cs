@@ -18,6 +18,9 @@
             if (duration.Minutes > 0)
                 return $"{duration.Minutes}m";
 
+            if (duration.Minutes == 0)
+                return $"1m";
+
             return "";
         }
 

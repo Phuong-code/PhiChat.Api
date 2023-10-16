@@ -32,7 +32,9 @@ namespace PhiChat.Api.Functions.User
                 {
                     Id = entity.Id,
                     UserName = entity.UserName,
-                    Token = token
+                    Token = token,
+                    IsOnline = entity.IsOnline,
+                    LastLogonTime = entity.LastLogonTime,
                 };
 
             }

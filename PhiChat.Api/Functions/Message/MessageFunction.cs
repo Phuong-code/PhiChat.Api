@@ -68,6 +68,13 @@ namespace PhiChat.Api.Functions.Message
                 .OrderBy(x => x.SendDateTime)
                 .ToListAsync();
 
+            foreach (var entity in entities)
+            {
+                entity.IsRead = true;
+            }
+
+            await _chatAppContext.SaveChangesAsync();
+
             return entities.Select(x => new Message
             {
                 Id = x.Id,
@@ -77,6 +84,20 @@ namespace PhiChat.Api.Functions.Message
                 SendDateTime = x.SendDateTime,
                 IsRead = x.IsRead,
             });
+        }
+
+        public async Task MarkMessageIsRead(int fromUserId, int toUserId)
+        {
+            var entities = await _chatAppContext.TblMessages
+                .Where(x => (x.FromUserId == fromUserId && x.ToUserId == toUserId))
+                .ToListAsync();
+
+            foreach (var entity in entities)
+            {
+                entity.IsRead = true;
+            }
+
+            await _chatAppContext.SaveChangesAsync();
         }
     }
 }
